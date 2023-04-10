@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const obj = {
+            color: ['red', 'pink'],
+            foot: '汉堡',
+            message: {
+                car: '奔驰',
+            },
+            day: '星期一'
+        }
+        function deepCopy(oldobj, newobj) {
+            for (let k in oldobj) {
+                const item = oldobj[k];
+                if (item instanceof Array) {
+                    newobj[k] = [];
+                    deepCopy(item, newobj[k]);
+                } else if (item instanceof Object) {
+                    newobj[k] = {};
+                    deepCopy(item, newobj[k]);
+                } else {
+                    newobj[k] = item;
+                }
+            }
+            return newobj;
+        }
+        var o = {};
+        console.log(deepCopy(obj, o));
+    </script>
+</body>
+
+</html>
