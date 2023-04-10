@@ -1,0 +1,44 @@
+import React from 'react';
+import { NavLink,useRoutes } from 'react-router-dom';
+//router6删去Redirect，更换为Navigate
+import routes from './routes';  //路由表
+
+export default function App() {
+  //useRoutes里面是数组，因为里面包含了多个Route，一个Route对应数组里一个元素，该元素还要是对象
+  //const element是一个路由表，根据路由表生成对应的路由规则
+  const element = useRoutes(routes)
+  
+  return (
+    <div>
+    <div className="row">
+      <div className="col-xs-offset-2 col-xs-8">
+        <div className="page-header"><h2>React Router Demo</h2></div>
+      </div>
+    </div>
+    <div className="row">
+      <div className="col-xs-2 col-xs-offset-2">
+        <div className="list-group">
+            {/* 路由链接 */}
+            {/* router6删除了activeClassName自定义类名 */}
+          <NavLink className="list-group-item" to="/about">About</NavLink>
+          <NavLink className="list-group-item" to="/home">Home</NavLink>
+        </div>
+      </div>
+      <div className="col-xs-6">
+        <div className="panel">
+          <div className="panel-body">
+            {/* 注册路由 在6里面必须要包裹Routes 在5里面Switch不是必须有的 */}
+            {/* Routes作用和Switch一样 */}
+            {/* <Routes>
+                <Route path="/about" element={<About/>}/> Route5里：compoment={About} 
+                <Route path="/home" element={<Home/>}/>
+                <Route path='/' element={<Navigate to="/home"/>}/>  这里是重定向 
+            </Routes> */}
+            {element}  {/* 路由表 */}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  )
+}
